@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>
+        Hello World
+    </h1>
+    <pre></pre>
+    <script>
+        async function getData() {
+            try {
+                const reponse = await fetch('/get-data');
+                const result = await reponse.json();
+                document.getElementsByTagName('pre')[0].innerHTML = result?.data
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        let intervalId;
+        function shortPolling() {
+            intervalId = setInterval(() => {
+                getData()
+            }, 3000)
+        }
+        // Make sure you clear the timeout
+        clearInterval(intervalId);
+
+        shortPolling()
+    </script>
+</body>
+
+</html>

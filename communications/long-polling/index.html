@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>
+        Hello World
+    </h1>
+    <pre></pre>
+    <script>
+
+        async function getData(lastData) {
+            try {
+                const response = await fetch(`/get-data?lastData=${lastData}`);
+                const result = await response.json();
+                document.getElementsByTagName('pre')[0].innerHTML = result?.data
+                getData(result?.data);
+            } catch (e) {
+                console.log(e);
+                // please handle error scenario
+            }
+        }
+
+        getData()
+
+        shortPolling()
+    </script>
+</body>
+
+</html>
