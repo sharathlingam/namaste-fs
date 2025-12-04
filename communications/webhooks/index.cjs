@@ -5,8 +5,6 @@ const app = express();
 
 app.use(bodyParser);
 
-// app.use()
-
 app.post('/webhook', ((_req, res) => {
 
     const payload = res.body;
