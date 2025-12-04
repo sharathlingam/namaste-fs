@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>SSE Example</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <h1>SSE Example</h1>
+    <ul id="sse-data">
+    </ul>
+    <button id="stop-event" style="position: fixed; top: 0; right: 0; padding: 1rem;">Stop the events</button>
+    <script>
+        // Setup SSE connection
+        const eventSource = new EventSource("/sse");
+        const ul = document.getElementById('sse-data')
+
+        eventSource.onmessage = (e) => {
+            const li = document.createElement('li');
+            li.innerText = `message: ${e?.data}`;
+            ul.appendChild(li);
+        }
+
+        const buttonEl = document.getElementById('stop-event');
+        if (buttonEl) {
+            buttonEl.addEventListener('click', () => {
+                eventSource.close();
+
+                const li = document.createElement('li');
+                li.innerText = "The event connection is closed."
+                li.style = "color: red; background-color: #000000"
+                ul.appendChild(li);
+
+            })
+
+        }
+    </script>
+</body>
+
+</html>

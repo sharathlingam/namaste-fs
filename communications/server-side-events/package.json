@@ -1,0 +1,10 @@
+{
+  "name": "websocket",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon index.cjs"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
